@@ -1,0 +1,12 @@
+html, body {
+  height: 100%;
+}
+
+.title {
+  margin: 3%;
+}
+
+.card {
+  width: 95%;
+  margin-bottom: 3%;
+}
