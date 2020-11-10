@@ -16,7 +16,7 @@ var addStrawpoll = function(title, description) {
   '<div class="card-body">' +
   '<h5 class="card-title">' + title + '</h5>' +
   '<p class="card-text">' + description + '</p>' +
-  '<a href="#" class="btn btn-outline-dark">Voir</a>' +
+  '<a href="strawpoll.html" class="btn btn-outline-dark">Voir</a>' +
   '</div>' +
   '</div>');
 }

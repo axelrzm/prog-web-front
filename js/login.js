@@ -1,44 +1,24 @@
 var init = function() {
   $('#loginError').css('display', 'none');
-  $("#btnLogin").click(() => checkLogin());
+  $("#btnLogin").click(() => login());
 }
 
-var checkLogin = function() {
-  let username = $('#inputLogin').val();
+var login = function() {
+  const username = $('#inputLogin').val();
+  const password = $('#inputPassword').val();
   $.ajax({
-    url: "localhost:8080/user/",
+    url: "http://localhost:8080/login/",
     type: 'post',
-    data: username
+    data: {
+      name: username,
+      password: password
+    },
     success : function(rep) {
-      if (rep) {
-        checkPassword();
-      }
-      else {
-        $('#loginError').css('display', 'block');
-      }
+      $('#loginError').css('display', 'none');
+      location.href = "home.html";
     },
     error : function() {
-      console.log("erreur requete");
-    }
-  });
-}
-
-var checkPassword = function() {
-  let password = $('#inputPassword').val();
-  $.ajax({
-    url: "localhost:8080/user/",
-    type: 'post',
-    data: password
-    success : function(rep) {
-      if (rep) {
-        $('#loginError').css('display', 'none');
-        location.href = "home.html";
-      }
-      else {
-        $('#loginError').css('display', 'block');
-      }
-    },
-    error : function() {
+      $('#loginError').css('display', 'block');
       console.log("erreur requete");
     }
   });
