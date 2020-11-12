@@ -20,5 +20,6 @@ html, body {
 }
 
 #loginError {
+  display: none;
   margin-bottom: 5%;
 }

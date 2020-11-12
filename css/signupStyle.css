@@ -20,5 +20,6 @@ html, body {
 }
 
 #error {
+  display: none;
   margin-bottom: 5%;
 }

@@ -1,36 +1,42 @@
 var init = function() {
   $("#btnSignup").click(() => signup());
-}
+};
 
 var signup = function() {
-  location.href = "home.html";
-  const username = $('#inputLogin').val();
-  const mail = $('#inputMail').val();
-  const password = $('#inputPassword').val();
-  const confirmPassword = $('#inputConfirmPassword').val();
-
-  if (password !== confirmPassword) {
-    $('#error').html('Vos deux mots de passe sont différents. Veuillez réessayer')
+  const sUsername = $('#inputLogin').val();
+  const sMail = $('#inputMail').val();
+  const sPassword = $('#inputPassword').val();
+  const sConfirmPassword = $('#inputConfirmPassword').val();
+  $('#error').css('display', 'none');
+  if (sUsername.length === 0 || sMail.length === 0 || sPassword.length === 0 || sConfirmPassword.length === 0) {
+    $('#error').css('display', 'block');
+    $('#error').html('Veuillez renseigner tous les champs');
+  } else if (!sMail.includes('@')) {
+    $('#error').css('display', 'block');
+    $('#error').html('Veuillez rentrer un mail valide');
+  } else if (sPassword !== sConfirmPassword) {
+    $('#error').css('display', 'block');
+    $('#error').html('Vos deux mots de passe sont différents. Veuillez réessayer');
   } else {
     $.ajax({
       url: "http://localhost:8080/user/new",
       type: 'post',
       data: {
-        name: username,
-        password: password,
-        mail: mail
+        name: sUsername,
+        password: sPassword,
+        mail: sMail
       },
-      success : function(rep) {
-        $('#error').css('display', 'none');
-        location.href = "home.html";
+      success : function(result) {
+        if (result) {
+          location.href = "index.html";
+        }
       },
       error : function() {
-        $('#error').css('display', 'block');
-        console.log("erreur requete");
+        console.log("erreur requête");
       }
     });
   }
-}
+};
 
 $(document).ready(function(){
   init();
