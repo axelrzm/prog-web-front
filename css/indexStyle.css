@@ -4,8 +4,9 @@ html, body {
 
 .mainArea {
   height: 100vh;
-  background-image: url("../src/images/main-area.jpg");
+  background-image: url("../src/images/login.jpg");
   background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 .sidePanel>h1 {
@@ -18,6 +19,7 @@ html, body {
   margin-bottom: 5%;
 }
 
-.form {
-
+#loginError {
+  display: none;
+  margin-bottom: 5%;
 }
