@@ -7,16 +7,16 @@ var init = function () {
 }
 
 var loadInformation = function () {
-  const sToken = getCookie("auth_token");
+  const sToken = localStorage.getItem('auth_token');
   $.ajax({
-    url: "http://localhost:8080/user/" + 1,
+    url: "http://localhost:8080/user/information",
     type: 'get',
-    headers: {"Authorization": sToken},
+    headers: {"Authorization": "Bearer " + sToken},
     success : function (result) {
       if (result) {
         $('#inputLogin').val(result.username);
         $('#inputMail').val(result.mail);
-        sCurrentPassword = result.password;
+        localStorage.setItem('Id', result.id);
       }
     }
   });
@@ -30,10 +30,11 @@ var updateInformation = function () {
 
   if (sNewPassword.length > 0 && sConfirmNewPassword.length > 0 && sNewPassword !== sConfirmNewPassword) {
     $('#message').html('Vos deux mots de passe sont différents. Veuillez réessayer');
+    $('#message').css('display', 'block');
   } else {
-    const sToken = getCookie("auth_token");
+    const sToken = localStorage.getItem('auth_token');
     const oData = {
-      id: sToken,
+      id: localStorage.getItem('Id'),
       username: sUsername,
       mail: sMail
     };
@@ -60,8 +61,8 @@ var showPasswordForm = function () {
 }
 
 var logout = function () {
-  const sToken = getCookie("auth_token");
-  document.cookie = "auth_token=";
+  localStorage.setItem('auth_token', '');
+  localStorage.setItem('Id', '');
   location.href = "index.html";
 };
 
@@ -72,19 +73,3 @@ var cancel = function () {
 $(document).ready(function () {
   init();
 });
-
-var getCookie = function (cname) {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for(var i = 0; i <ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-};

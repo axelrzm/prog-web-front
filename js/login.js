@@ -21,7 +21,7 @@ var login = function () {
       success : function (result) {
         if (result && result.token.length > 1) {
           $('#loginError').css('display', 'none');
-          document.cookie = 'auth_token=' + result.token;
+          localStorage.setItem('auth_token', result.token);
           location.href = "home.html";
         }
       },
