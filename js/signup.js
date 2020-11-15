@@ -22,17 +22,16 @@ var signup = function() {
       url: "http://localhost:8080/user/new",
       type: 'post',
       data: {
-        name: sUsername,
+        username: sUsername,
         password: sPassword,
         mail: sMail
       },
       success : function(result) {
-        if (result) {
-          location.href = "index.html";
-        }
+        location.href = "index.html";
       },
       error : function() {
-        console.log("erreur requête");
+        $('#error').css('display', 'block');
+        $('#error').html('Utilisateur déjà existant');
       }
     });
   }

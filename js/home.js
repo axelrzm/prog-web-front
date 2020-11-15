@@ -8,9 +8,11 @@ var init = function () {
 };
 
 var loadStrawPolls = function () {
+  const sToken = getCookie("auth_token");
   $.ajax({
     url: "http://localhost:8080/poll/",
     type: 'get',
+    headers: {"Authorization": "Bearer " + sToken},
     success : function (result) {
       if (result) {
         for (let i = 0; i < result.length; i++) {
@@ -31,18 +33,9 @@ var loadStrawPolls = function () {
 
 var logout = function () {
   const sToken = getCookie("auth_token");
-  $.ajax({
-    url: "http://localhost:8080/logout/",
-    type: 'post',
-    data: {
-      id: sToken
-    },
-    success : function (result) {
-      document.cookie = "auth_token=";
-      location.href = "index.html";
-    }
-  });
-}
+  document.cookie = "auth_token=";
+  location.href = "index.html";
+};
 
 var addStrawpoll = function (title, description) {
   $('#strawpolls')
