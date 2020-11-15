@@ -6,3 +6,11 @@ html, body {
   margin-top: 3%;
   margin-bottom: 3%;
 }
+
+#btnEditPassword {
+  margin-bottom: 2%;
+}
+
+#editPassword {
+  display: none;
+}

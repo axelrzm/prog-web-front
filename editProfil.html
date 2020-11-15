@@ -41,11 +41,10 @@
           </li>
         </ul>
       </div>
-      <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Rechercher un sondage..." aria-label="Search">
-        <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Rechercher</button>
+      <div class="form-inline">
         <a class="btn btn-dark ml-sm-2" href="editProfil.html">Profil</a>
-      </form>
+        <button id="btnLogout" class="btn btn-outline-danger ml-sm-2">Déconnexion</button>
+      </div>
     </nav>
 
     <div class="container-fluid">
@@ -68,16 +67,21 @@
             <input type="email" class="form-control" id="inputMail">
           </div>
 
-          <div class="form-group">
-            <label for="inputPassword">Nouveau mot de passe</label>
-            <input type="password" class="form-control" id="inputPassword">
+          <button id="btnEditPassword" class="btn btn-outline-dark">Changer de mot de passe</button>
+
+          <div id="editPassword">
+            <div class="form-group">
+              <label for="inputPassword">Nouveau mot de passe</label>
+              <input type="password" class="form-control" id="inputPassword">
+            </div>
+
+            <div class="form-group">
+              <label for="inputConfirmPassword">Confirmer votre nouveau mot de passe</label>
+              <input type="password" class="form-control" id="inputConfirmPassword">
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="inputConfirmPassword">Confirmer votre nouveau mot de passe</label>
-            <input type="password" class="form-control" id="inputConfirmPassword">
-          </div>
-          <small id="message" class="form-text text-danger"></small>
+          <small id="message" class="alert alert-danger" role="alert"></small>
           <button id="btnUpdate" class="btn btn-dark">Mettre à jour</button>
           <button id="btnBack" class="btn btn-outline-danger ml-sm-2">Retour</button>
         </div>

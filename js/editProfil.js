@@ -1,20 +1,20 @@
 var init = function () {
   loadInformation();
   $("#btnUpdate").click(() => updateInformation());
+  $('#btnLogout').click(() => logout());
+  $('#btnEditPassword').click(() => showPasswordForm());
   $('#btnBack').click(() => cancel());
 }
 
 var loadInformation = function () {
   const sToken = getCookie("auth_token");
   $.ajax({
-    url: "http://localhost:8080/user/" + sToken,
+    url: "http://localhost:8080/user/" + 1,
     type: 'get',
-    data: {
-      id: sToken
-    },
+    headers: {"Authorization": sToken},
     success : function (result) {
       if (result) {
-        $('#inputLogin').val(result.name);
+        $('#inputLogin').val(result.username);
         $('#inputMail').val(result.mail);
         sCurrentPassword = result.password;
       }
@@ -34,7 +34,7 @@ var updateInformation = function () {
     const sToken = getCookie("auth_token");
     const oData = {
       id: sToken,
-      name: sUsername,
+      username: sUsername,
       mail: sMail
     };
     if (sNewPassword.length > 0) {
@@ -44,13 +44,25 @@ var updateInformation = function () {
       url: "http://localhost:8080/user/edit",
       type: 'put',
       data: oData,
+      headers: {"Authorization": "Bearer " + sToken},
       success : function (result) {
         $('#message').css('display', 'block');
-        $('#message').removeClass('text-danger').addClass('text-success');
+        $('#message').removeClass('alert-danger').addClass('alert-success');
         $('#message').html('Changements effectués');
       }
     });
   }
+};
+
+var showPasswordForm = function () {
+  $('#editPassword').show();
+  $('#btnEditPassword').hide();
+}
+
+var logout = function () {
+  const sToken = getCookie("auth_token");
+  document.cookie = "auth_token=";
+  location.href = "index.html";
 };
 
 var cancel = function () {

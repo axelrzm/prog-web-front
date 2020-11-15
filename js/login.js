@@ -12,10 +12,10 @@ var login = function () {
     $('#loginError').css('display', 'block');
   } else {
     $.ajax({
-      url: "http://localhost:8080/login/",
+      url: "http://localhost:8080/login",
       type: 'post',
       data: {
-        name: sUsername,
+        username: sUsername,
         password: sPassword
       },
       success : function (result) {
@@ -23,10 +23,11 @@ var login = function () {
           $('#loginError').css('display', 'none');
           document.cookie = 'auth_token=' + result.token;
           location.href = "home.html";
-        } else {
-          $('#loginError').html("Nom d'utilisateur/Mot de passe invalide(s)");
-          $('#loginError').css('display', 'block');
         }
+      },
+      error : function() {
+        $('#loginError').html("Nom d'utilisateur/Mot de passe invalide(s)");
+        $('#loginError').css('display', 'block');
       }
     });
   }
