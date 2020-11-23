@@ -22,6 +22,7 @@ var login = function () {
         if (result && result.token.length > 1) {
           $('#loginError').css('display', 'none');
           localStorage.setItem('auth_token', result.token);
+          saveUserId()
           location.href = "home.html";
         }
       },
@@ -31,6 +32,20 @@ var login = function () {
       }
     });
   }
+};
+
+function saveUserId() {
+  const sToken = localStorage.getItem('auth_token');
+  $.ajax({
+    url: "http://localhost:8080/user/information",
+    type: 'get',
+    headers: {"Authorization": "Bearer " + sToken},
+    success : function (result) {
+      if (result) {
+        localStorage.setItem('Id', result.id);
+      }
+    }
+  });
 };
 
 var signup = function () {

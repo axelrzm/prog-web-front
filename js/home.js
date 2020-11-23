@@ -23,12 +23,6 @@ var loadStrawPolls = function () {
       }
     }
   });
-  //temporary
-  addStrawpoll("Sondage 2", "test");
-  addStrawpoll("Sondage 3", "test 2");
-  addStrawpoll("Sondage 3", "test 2");
-  addStrawpoll("Sondage 3", "test 2");
-  addStrawpoll("Sondage 3", "test 2");
 };
 
 var logout = function () {

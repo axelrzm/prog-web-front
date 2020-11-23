@@ -10,3 +10,8 @@ html, body {
 .optionButtons {
   margin-bottom: 2%;
 }
+
+#error {
+  display: none;
+  margin-bottom: 5%;
+}

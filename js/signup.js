@@ -1,5 +1,6 @@
 var init = function() {
   $("#btnSignup").click(() => signup());
+  $('#btnCancel').click(() => cancel());
 };
 
 var signup = function() {
@@ -35,6 +36,10 @@ var signup = function() {
       }
     });
   }
+};
+
+var cancel = function () {
+  location.href = "index.html";
 };
 
 $(document).ready(function(){
