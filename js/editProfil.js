@@ -16,7 +16,6 @@ var loadInformation = function () {
       if (result) {
         $('#inputLogin').val(result.username);
         $('#inputMail').val(result.mail);
-        localStorage.setItem('Id', result.id);
       }
     }
   });

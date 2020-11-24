@@ -1,6 +1,5 @@
 var init = function () {
-  saveUserId()
-  loadStrawPolls();
+  loadMyStrawPolls();
   $('#btnLogout').click(() => logout());
   $('#inputSearch').keyup(() => search());
   $('#inputSearch').on("search", function() {
@@ -8,29 +7,15 @@ var init = function () {
   });
 };
 
-var saveUserId = function() {
-  const sToken = localStorage.getItem('auth_token');
-  $.ajax({
-    url: "http://localhost:8080/user/information",
-    type: 'get',
-    headers: {"Authorization": "Bearer " + sToken},
-    success : function (result) {
-      if (result) {
-        localStorage.setItem('Id', result.id);
-      }
-    },
-    error : function() {
-      alert('Erreur connexion')
-    }
-  });
-};
-
-var loadStrawPolls = function () {
+var loadMyStrawPolls = function () {
   const sToken = localStorage.getItem('auth_token');
   $.ajax({
     url: "http://localhost:8080/poll/",
     type: 'get',
     headers: {"Authorization": "Bearer " + sToken},
+    data: {
+      userId: localStorage.getItem('Id')
+    },
     success : function (result) {
       if (result) {
         for (let i = 0; i < result.length; i++) {

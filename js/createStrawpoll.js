@@ -3,6 +3,10 @@ var init = function() {
   $("#btnLogout").click(() => logout());
   $("#btnRemove").click(() => removeOption());
   $("#btnCreate").click(() => createPoll());
+  $('#myStrawpolls').click(() => function() {
+    location.href="home.html";
+    loadMyStrawPolls();
+  });
 };
 
 var addOption = function () {
@@ -51,7 +55,7 @@ var createPoll = function() {
         location: sLocation,
         date: sDate,
         options: JSON.stringify(sOptions),
-        userId: localStorage.getItem('Id', '')
+        userId: localStorage.getItem('Id')
       },
       success : function(result) {
         location.href = "home.html";
