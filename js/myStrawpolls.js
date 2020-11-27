@@ -21,7 +21,7 @@ var loadMyStrawPolls = function () {
         for (let i = 0; i < result.length; i++) {
           const sName = result[i].name;
           const sDescription = result[i].description;
-          addStrawpoll(sName, sDescription);
+          addStrawpoll(sName, sDescription, result[i].id);
         }
       }
     }
@@ -34,15 +34,21 @@ var logout = function () {
   location.href = "index.html";
 };
 
-var addStrawpoll = function (title, description) {
+var showPoll = function (id) {
+  localStorage.setItem('pollId', id);
+  location.href = "strawpoll.html";
+};
+
+var addStrawpoll = function (title, description, id) {
   $('#strawpolls')
   .append('<div class="card">' +
   '<div class="card-body">' +
   '<h5 class="card-title">' + title + '</h5>' +
   '<p class="card-text">' + description + '</p>' +
-  '<a href="strawpoll.html" class="btn btn-outline-dark">Voir</a>' +
+  '<button id="' + id + '" class="btn btn-outline-dark detail">Voir</button>' +
   '</div>' +
   '</div>');
+  $('#' + id).click(() => showPoll(id));
 };
 
 var search = function () {

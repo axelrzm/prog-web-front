@@ -4,6 +4,7 @@ var init = function () {
   $('#btnLogout').click(() => logout());
   $('#btnEditPassword').click(() => showPasswordForm());
   $('#btnBack').click(() => cancel());
+  $('#btnDelete').click(() => deleteUser());
 }
 
 var loadInformation = function () {
@@ -57,6 +58,28 @@ var updateInformation = function () {
 var showPasswordForm = function () {
   $('#editPassword').show();
   $('#btnEditPassword').hide();
+}
+
+var deleteUser = function () {
+  if (confirm("Vous allez supprimer votre compte. Etes-vous sûr ?") == true) {
+    const sToken = localStorage.getItem('auth_token');
+    $.ajax({
+      url: "http://localhost:8080/user/delete",
+      type: 'delete',
+      data: {
+        id: localStorage.getItem('Id')
+      },
+      headers: {"Authorization": "Bearer " + sToken},
+      success : function (result) {
+        logout();
+      },
+      error: function() {
+        $('#message').css('display', 'block');
+        $('#message').removeClass('alert-danger').addClass('alert-success');
+        $('#message').html('Supression impossible : contactez votre administrateur.');
+      }
+    });
+  }
 }
 
 var logout = function () {
