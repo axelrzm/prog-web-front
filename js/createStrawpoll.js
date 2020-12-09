@@ -48,7 +48,6 @@ var createPoll = function() {
       url: "http://localhost:8080/poll/new",
       type: 'post',
       headers: {"Authorization": "Bearer " + sToken},
-      dataType: 'JSON',
       data: {
         name: sName,
         description: sDescription,
@@ -60,7 +59,8 @@ var createPoll = function() {
       success : function(result) {
         location.href = "home.html";
       },
-      error : function() {
+      error : function(xhr) {
+        console.log(xhr.status);
         $('#error').css('display', 'block');
         $('#error').html('Sondage déjà existant');
       }
