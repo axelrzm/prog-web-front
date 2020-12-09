@@ -30,7 +30,7 @@ var loadStrawPoll = function () {
 var addOption = function (option) {
   $('#radioOptions')
   .append('<div class="form-check">' +
-  '<input class="form-check-input" type="radio" name="voteOption' + option.id + '" id="voteOption' + option.id + '" value="' + option.value + '">' +
+  '<input class="form-check-input" type="radio" name="voteOption" id="voteOption' + option.id + '" value="' + option.value + '">' +
   '<label class="form-check-label" for="voteOption' + option.id + '">' + option.value + '</label>' +
   '</div>');
 
