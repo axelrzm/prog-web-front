@@ -30,7 +30,7 @@ var loadStrawPoll = function () {
 var addOption = function (option) {
   $('#radioOptions')
   .append('<div class="form-check">' +
-  '<input class="form-check-input" type="radio" name="voteOption" id="voteOption' + option.id + '" value="' + option.value + '">' +
+  '<input class="form-check-input" type="radio" name="voteOption" id="' + option.id + '" value="' + option.value + '">' +
   '<label class="form-check-label" for="voteOption' + option.id + '">' + option.value + '</label>' +
   '</div>');
 
@@ -44,17 +44,19 @@ var addOption = function (option) {
 }
 
 var vote = function () {
-  var idOptionChecked = $('#radioOptions :checked').attr('id');
-  alert(idOptionChecked)
+  const pollId = localStorage.getItem('pollId');
+  const idOptionChecked = $('#radioOptions :checked').attr('id');
+  const sToken = localStorage.getItem('auth_token');
   $.ajax({
     url: "http://localhost:8080/poll/vote",
     type: 'post',
     data: {
-      optionId: idOptionChecked
+      optionId: idOptionChecked,
+      pollId: pollId
     },
     headers: {"Authorization": "Bearer " + sToken},
     success : function (result) {
-      //location.href = "home.html"
+      location.href = "home.html"
     },
     error: function() {
       alert("Erreur pendant le vote")
