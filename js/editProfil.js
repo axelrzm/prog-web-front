@@ -47,9 +47,13 @@ var updateInformation = function () {
       data: oData,
       headers: {"Authorization": "Bearer " + sToken},
       success : function (result) {
-        $('#message').css('display', 'block');
-        $('#message').removeClass('alert-danger').addClass('alert-success');
-        $('#message').html('Changements effectués');
+        if (result && result.token.length > 1) {
+          $('#loginError').css('display', 'none');
+          localStorage.setItem('auth_token', result.token);
+          $('#message').css('display', 'block');
+          $('#message').removeClass('alert-danger').addClass('alert-success');
+          $('#message').html('Changements effectués');
+        }
       }
     });
   }
