@@ -24,9 +24,30 @@ Le site possède 7 pages :
 
 Il faut avant lancer la partie `Backend` à partir de votre IDE. Le projet est disponible ici : [Backend](https://github.com/tanguybro/prog-web)
 
-Après avoir démarré la partie `Backend`, vous pouvez ouvrir n'importe quelle page (par exemple `index.html`) et vous arriverez sur la page de connexion.   
+Après avoir démarré la partie `Backend`, vous pouvez ouvrir n'importe quelle page (par exemple `index.html`) et vous arriverez sur la page de connexion. 
+
+<img src="src/images/connexion.PNG">
+
 La première chose à faire est de s'inscrire sur le site. Une fois inscrit vous pouvez connecter.  
-Sur la page d'accueil, vous verrez tous les sondages disponibles. Vous pouvez voter pour un sondage et voir le taux de réponse.  
+
+<img src="src/images/inscription.PNG">
+
+Sur la page d'accueil, vous verrez tous les sondages disponibles.
+
+<img src="src/images/accueil.PNG">
+
+Vous pouvez voter pour un sondage et voir le taux de réponse.  
+
+<img src="src/images/sondage.PNG">
+
 Vous pouvez également créer un nouveau sondage en précisant son nom, sa description, le lieu, la date et les propostions possibles.  
-Vous pouvez voir les sondages que vous avez créés.   
+
+<img src="src/images/creation-sondage.PNG">
+
+Vous pouvez voir les sondages que vous avez créés.  
+
+<img src="src/images/vos-sondages.PNG">
+
 Enfin vous pouvez également les informations de votre utilisateurs (nom, email et mot de passe).
+
+<img src="src/images/edition-profil.PNG">
