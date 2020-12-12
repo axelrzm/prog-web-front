@@ -18,6 +18,9 @@ var loadInformation = function () {
         $('#inputLogin').val(result.username);
         $('#inputMail').val(result.mail);
       }
+    },
+    error: function () {
+      location.href = "index.html";
     }
   });
 };

@@ -24,6 +24,9 @@ var loadMyStrawPolls = function () {
           addStrawpoll(sName, sDescription, result[i].id);
         }
       }
+    },
+    error: function () {
+      location.href = "index.html";
     }
   });
 };

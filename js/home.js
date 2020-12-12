@@ -20,7 +20,7 @@ var saveUserId = function() {
       }
     },
     error : function() {
-      alert('Erreur connexion')
+      location.href = "index.html";
     }
   });
 };

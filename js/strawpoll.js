@@ -23,6 +23,9 @@ var loadStrawPoll = function () {
             addOption(result.options[i]);
           }
       }
+    },
+    error: function () {
+      location.href = "index.html";
     }
   });
 };

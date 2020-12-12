@@ -1,4 +1,5 @@
 var init = function() {
+  loadInformation();
   $("#btnAdd").click(() => addOption());
   $("#btnLogout").click(() => logout());
   $("#btnRemove").click(() => removeOption());
@@ -6,6 +7,20 @@ var init = function() {
   $('#myStrawpolls').click(() => function() {
     location.href="home.html";
     loadMyStrawPolls();
+  });
+};
+
+var loadInformation = function () {
+  const sToken = localStorage.getItem('auth_token');
+  $.ajax({
+    url: "http://localhost:8080/user/information",
+    type: 'get',
+    headers: {"Authorization": "Bearer " + sToken},
+    success : function (result) {
+    },
+    error: function () {
+      location.href = "index.html";
+    }
   });
 };
 
